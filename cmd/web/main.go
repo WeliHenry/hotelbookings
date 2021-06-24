@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/go-chi/chi/v5"
+	"github.com/welihenry/hotelbookings/pkg/handlers"
 	"log"
 	"net/http"
 )
@@ -18,7 +19,7 @@ func main()  {
 	//session.Cookie.Secure = false
 
 	router:= chi.NewRouter()
-	router.Get("/", Home)
+	router.Get("/", handlers.Home)
 	log.Fatal(http.ListenAndServe(portNumber, router))
 
 

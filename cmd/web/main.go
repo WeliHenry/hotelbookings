@@ -9,22 +9,16 @@ import (
 
 const portNumber = ":8080"
 
-
-
-func main()  {
+func main() {
 	//session := scs.New()
 	//session.Lifetime = 24 * time.Hour
 	//session.Cookie.Persist = true
 	//session.Cookie.SameSite = http.SameSiteLaxMode
 	//session.Cookie.Secure = false
 
-	router:= chi.NewRouter()
+	router := chi.NewRouter()
 	router.Get("/", handlers.Home)
+	router.Get("/about", handlers.About)
 	log.Fatal(http.ListenAndServe(portNumber, router))
 
-
-
-
-
 }
-

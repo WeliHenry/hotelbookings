@@ -2,7 +2,9 @@ package main
 
 import (
 	"github.com/go-chi/chi/v5"
+	"github.com/welihenry/hotelbookings/pkg/config"
 	"github.com/welihenry/hotelbookings/pkg/handlers"
+	"github.com/welihenry/hotelbookings/pkg/render"
 	"log"
 	"net/http"
 )
@@ -15,6 +17,14 @@ func main() {
 	//session.Cookie.Persist = true
 	//session.Cookie.SameSite = http.SameSiteLaxMode
 	//session.Cookie.Secure = false
+
+	var app config.AppConfig
+	tc, err:= render.CreateTemplateCache()
+	if err != nil {
+		log.Fatal("cannot create template cache")
+	}
+	app.TemplateCache = tc
+
 
 	router := chi.NewRouter()
 	router.Get("/", handlers.Home)

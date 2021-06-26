@@ -24,11 +24,16 @@ func main() {
 		log.Fatal("cannot create template cache")
 	}
 	app.TemplateCache = tc
+	app.UseCache = true
+
+	repo:= handlers.NewRepo(&app)
+	handlers.NewHandlers(repo)
+	render.NewTemplates(&app)
 
 
 	router := chi.NewRouter()
-	router.Get("/", handlers.Home)
-	router.Get("/about", handlers.About)
+	router.Get("/", handlers.Repo.Home)
+	router.Get("/about", handlers.Repo.About)
 	log.Fatal(http.ListenAndServe(portNumber, router))
 
 }

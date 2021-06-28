@@ -54,6 +54,8 @@ func main() {
 
 	router.Get("/", handlers.Repo.Home)
 	router.Get("/about", handlers.Repo.About)
-	log.Fatal(http.ListenAndServe(portNumber, router))
 
+	fileServer:= http.FileServer(http.Dir("./static/"))
+	router.Handle("/static/*", http.StripPrefix("/static", fileServer))
+	log.Fatal(http.ListenAndServe(portNumber, router))
 }

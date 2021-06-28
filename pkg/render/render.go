@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/welihenry/hotelbookings/pkg/config"
+	"github.com/welihenry/hotelbookings/pkg/models"
 	"html/template"
 	"log"
 	"net/http"
@@ -11,24 +12,32 @@ import (
 )
 
 var functions = template.FuncMap{}
-
 var app *config.AppConfig
+
+func AddDefaultTemplateData(data *models.TemplateData) *models.TemplateData {
+
+	return data
+}
 func NewTemplates(a *config.AppConfig)  {
 	app = a
 }
+    var tc map[string]*template.Template
+func RenderTemplate(w http.ResponseWriter, tmpl string, data *models.TemplateData)  {
 
-func RenderTemplate(w http.ResponseWriter, tmpl string)  {
-	tc:= app.TemplateCache
-	//tc, err:= CreateTemplateCache()
-	//if err != nil {
-	//	log.Fatal(err)
-	//}
+	if app.UseCache {
+
+		tc= app.TemplateCache
+	}else {
+		tc,_ = CreateTemplateCache()
+	}
+
+
 	t, ok:= tc[tmpl]
 	if !ok {
 		log.Fatal("could not get template from cache")
 	}
 	buf:= new(bytes.Buffer)
-	_= t.Execute(buf, nil)
+	_= t.Execute(buf, data)
 	_,err := buf.WriteTo(w)
 	if err != nil {
 		fmt.Println("error writing template to browser", err)

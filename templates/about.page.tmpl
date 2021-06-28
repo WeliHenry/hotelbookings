@@ -4,5 +4,16 @@
 
 {{define "content"}}
 
+    <p>
+        {{if ne (index .StringMap "remote_ip") ""}}
+            your remote ip is : {{ index .StringMap "remote_ip"}}
+
+        {{else}}
+            <p>sorry could not get your ip, please visit <a href="/">homepage</a> to set it</p>
+        {{end}}
+    </p>
+
+
+
 {{end}}
 

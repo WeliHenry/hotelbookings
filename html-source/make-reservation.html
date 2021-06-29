@@ -55,26 +55,38 @@
 
 <div class="container">
   <div class="row">
-    <div class="col ">
-      <h1 class="mt-5">search for availability</h1>
-      <form action="book.html" method="get">
-        <div class="form-group">
-          <label for="startdate">Starting Date</label>
-          <input type="date" class="form-control" name="startdate" id="startdate" aria-describedby="startdateHelp">
-          <small id="startdatehelp" class="form-text text-muted">Enter Start Date in mm-dd-yy</small>
+    <div class="col">
+      <h1>Make Reservation</h1>
+
+      <form method="post" action="" class="needs-validation" novalidate>
+
+        <div class="form-group mt-5">
+          <label for="first-name">First Name:</label>
+          <input type="text" id="first-name" class="form-control" required autocomplete="off">
+        </div>
+        <div class="form-group mt-5">
+          <label for="last-name">Last Name:</label>
+          <input type="text" id="last-name" class="form-control" required autocomplete="off">
         </div>
 
-        <div class="form-group">
-          <label for="startdate">Starting Date</label>
-          <input type="date" class="form-control" name="enddate" id="Enddate" aria-describedby="enddateHelp">
-          <small id="Enddatehelp" class="form-text text-muted">Enter end Date in mm-dd-yy</small>
+        <div class="form-group mt-5">
+          <label for="email">Email:</label>
+          <input type="text" id="email" class="form-control" required autocomplete="off">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+
+        <div class="form-group mt-5">
+          <label for="phone">Phone:</label>
+          <input type="text" id="phone" class="form-control" required autocomplete="off">
+        </div>
+        <hr>
+        <input type="submit" value="Make Reservation" class="btn btn-primary">
+
       </form>
+
     </div>
   </div>
 
-  </div>
+</div>
 
 <div class="row my-footer">
   <div class="col">
